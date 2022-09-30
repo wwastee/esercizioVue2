@@ -1,28 +1,55 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
-  },
-});
-</script>
-
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a target="_blank" href="https://vitejs.dev/">Vite</a> +
-      <a target="_blank" href="https://v2.vuejs.org/">Vue 2</a>.
-    </h3>
+    <div class="pippo"></div>
+    <h1 class="red">{{ msg }}</h1>
+    <h1 class="BigNumRD">{{ num }}</h1>
+    <h1 class="needed">{{ need }}</h1>
+    <h1 class="oggetto">{{ obj }}</h1>
+    <button @click="$emit('qualcosa', 'ciao')">BOTTONE</button>
+    <button @click="$emit('input', value + 1)">TEST V-MODEL</button>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    msg: String,
+    num: Number,
+    need: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: Number,
+    },
+    obj: {
+      type: Object,
+      required: false,
+      default: function () {
+        return { message: "la programmazione è difficile" };
+      },
+    },
+  },
+};
+</script>
 
 <style scoped>
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
   top: -10px;
+}
+
+.needed {
+  color: yellow;
+}
+
+.red {
+  color: red;
+}
+
+.BigNumRD {
+  color: red;
+  border: 2px solid black;
 }
 
 h3 {
