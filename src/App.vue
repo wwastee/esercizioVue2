@@ -1,35 +1,45 @@
 <template>
   <div class="pag 1">
-    <pippo msg="Ciao" :num="154" need="necessariamente"></pippo>
-    <pippo @qualcosa="foo" need=""></pippo>
-    <pippo @input="foo" v-model="text" need=""></pippo>
-    <div class="linea1"></div>
-    <h1>mia pagina</h1>
-    <p>mi chiamo {{ nome }} e ho {{ eta }} anni</p>
-    <p>{{ text }}</p>
-    <p>
-      oggi è il giorno {{ giorno() }} del mese numero {{ mese() }} e dell'anno
-      {{ anno() }}
-    </p>
-    <p>{{ i }}</p>
-    <p>{{ maiusc(argomento) }}</p>
-    <p>{{ minusc("CASONA") }}</p>
-    <p>{{ n }}</p>
-    <p>{{ moltiplicaz }}</p>
-    <p>{{ addizione }}</p>
-    <p>
-      {{ oggetto.foo }} <br />
-      {{ oggetto.bar }}
-    </p>
-    <p>{{ array[0] }} {{ array[1] }}</p>
+    <button @click="bottonio = !bottonio">
+      questo bottone farà un operazione
+    </button>
+    <p v-if="bottonio">pulito</p>
+    <template v-else>
+      <pippo msg="Ciao" :num="154" need="necessariamente"></pippo>
+      <pippo @qualcosa="foo" need=""></pippo>
+      <pippo @input="foo" v-model="text" need=""></pippo>
+      <pluto @input="ciao" v-model="pera"></pluto>
+      <div class="linea1"></div>
+      <h1>mia pagina</h1>
+      <p>mi chiamo {{ nome }} e ho {{ eta }} anni</p>
+      <p>{{ text }}</p>
+      <p>
+        oggi è il giorno {{ giorno() }} del mese numero {{ mese() }} e dell'anno
+        {{ anno() }}
+      </p>
+      {{ pera }}
+      <p>{{ i }}</p>
+      <p>{{ maiusc(argomento) }}</p>
+      <p>{{ minusc("CASONA") }}</p>
+      <p>{{ n }}</p>
+      <p>{{ moltiplicaz }}</p>
+      <p>{{ addizione }}</p>
+      <p>
+        {{ oggetto.foo }} <br />
+        {{ oggetto.bar }}
+      </p>
+      <p>{{ array[0] }} {{ array[1] }}</p>
+    </template>
   </div>
 </template>
 
 <script>
 import pippo from "@/components/HelloWorld.vue";
+import pluto from "./components/nuovoTest.vue";
 export default {
   components: {
     pippo,
+    pluto,
   },
 
   computed: {
@@ -58,13 +68,14 @@ export default {
       argomento: "casa",
       n: "",
       z: 1,
-      ciao: "califragilistichespiralidoso",
       oggetto: {
         foo: 1,
         bar: 2,
       },
       array: [3, 4],
       text: 0,
+      pera: 10,
+      bottonio: true,
     };
   },
   methods: {
@@ -85,6 +96,9 @@ export default {
     },
     foo(arg) {
       console.log(arg);
+    },
+    ciao() {
+      window.alert("ciao a tutti");
     },
   },
 };
