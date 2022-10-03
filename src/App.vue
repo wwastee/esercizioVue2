@@ -1,9 +1,13 @@
 <template>
   <div class="pag 1">
-    <button @click="bottonio = 'pulito'">pulito</button>
-    <button @click="bottonio = 'sporco'">sporco</button>
-    <p v-if="bottonio === 'pulito'">pulito</p>
-    <template v-if="bottonio === 'sporco'">
+    <!--<button @click="bottonio = 'pulito'">pulito</button>
+    <button @click="bottonio = 'sporco'">sporco</button>-->
+    <br />
+    <button v-for="item in arr2" :key="item" @click="bottonio = item">
+      {{ item }}
+    </button>
+    <p v-if="bottonio === 'Pulito'">pulito</p>
+    <template v-if="bottonio === 'Sporco'">
       <pippo msg="Ciao" :num="154" need="necessariamente"></pippo>
       <pippo @qualcosa="foo" need=""></pippo>
       <pippo @input="foo" v-model="text" need=""></pippo>
@@ -16,6 +20,11 @@
         oggi è il giorno {{ giorno() }} del mese numero {{ mese() }} e dell'anno
         {{ anno() }}
       </p>
+      <button @click="show = !show">show</button>
+      <div class="test show">
+        <p v-show="show == true">show attivo</p>
+        <p v-show="show == false">show disattivo</p>
+      </div>
       {{ pera }}
       <p>{{ i }}</p>
       <p>{{ maiusc(argomento) }}</p>
@@ -74,8 +83,9 @@ export default {
       array: [3, 4],
       text: 0,
       pera: 10,
-      bottonio: "pulito",
-      arr2: ["pulito", "sporco"],
+      bottonio: null,
+      arr2: ["Pulito", "Sporco"],
+      show: false,
     };
   },
   methods: {
