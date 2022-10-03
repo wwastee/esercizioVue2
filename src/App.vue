@@ -1,10 +1,9 @@
 <template>
   <div class="pag 1">
-    <button @click="bottonio = !bottonio">
-      questo bottone farà un operazione
-    </button>
-    <p v-if="bottonio">pulito</p>
-    <template v-else>
+    <button @click="bottonio = 'pulito'">pulito</button>
+    <button @click="bottonio = 'sporco'">sporco</button>
+    <p v-if="bottonio === 'pulito'">pulito</p>
+    <template v-if="bottonio === 'sporco'">
       <pippo msg="Ciao" :num="154" need="necessariamente"></pippo>
       <pippo @qualcosa="foo" need=""></pippo>
       <pippo @input="foo" v-model="text" need=""></pippo>
@@ -75,7 +74,8 @@ export default {
       array: [3, 4],
       text: 0,
       pera: 10,
-      bottonio: true,
+      bottonio: "pulito",
+      arr2: ["pulito", "sporco"],
     };
   },
   methods: {
